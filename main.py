@@ -1,17 +1,5 @@
-def sum_digits(value):
-    res = 0
-
-    while value != 0:
-        res += value % 10
-        value //= 10
-
-    return res
-
-
-arr = [i**3 for i in range(1, 1001, 2)]
-
-res1 = sum(filter(lambda num: sum_digits(num) % 7 == 0, arr))
-res2 = sum(filter(lambda num: sum_digits(num + 17) % 7 == 0, arr))
-
-print(res1)
-print(res2)
+a = [['hello'], 10]
+b = a.copy()
+print(id(a), id(b))  # 30433928 65563016
+b[1] = 15
+print(id(a[0]), id(b[0]))  # [['hello'], 10] [['hello'], 15]
