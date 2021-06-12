@@ -1,16 +1,17 @@
-# This is a sample Python script.
+def sum_digits(value):
+    res = 0
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    while value != 0:
+        res += value % 10
+        value //= 10
+
+    return res
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+arr = [i**3 for i in range(1, 1001, 2)]
 
+res1 = sum(filter(lambda num: sum_digits(num) % 7 == 0, arr))
+res2 = sum(filter(lambda num: sum_digits(num + 17) % 7 == 0, arr))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(res1)
+print(res2)
