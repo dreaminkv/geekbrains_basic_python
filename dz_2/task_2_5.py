@@ -25,3 +25,18 @@ some_price = [5.16, 96.66, 87.43, 83.9, 93.78,
               61.89, 67.22, 56.17, 85.87, 81.87,
               35.22, 25.84, 57.51, 57.3, 59.53,
               10.1, 92.61, 13.95, 49.45, 39.28]
+print(id(some_price))
+some_price.sort()
+print(id(some_price))
+sort_price_down = sorted(some_price, reverse=True)
+
+
+def view_rub_penny(price):
+    rub_penny = []
+    price = [str(i).split('.') for i in price]
+    for el in price:
+        rub_penny.append(f'{el[0]} рублей {int(el[1]):02d} копеек,')
+    print(*rub_penny)
+
+
+view_rub_penny(sort_price_down[0:5])
