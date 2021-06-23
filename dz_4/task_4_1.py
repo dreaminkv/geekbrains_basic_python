@@ -11,14 +11,18 @@
 # в каком регистре был передан аргумент? В качестве примера выведите курсы доллара и евро.
 import requests
 import json
+from sys import argv
+LINK = 'https://www.cbr-xml-daily.ru/daily_json.js'
 
 
-def what_course(valute):
-    link = 'https://www.cbr-xml-daily.ru/daily_json.js'
-    res = requests.get(link)
-    json_file = json.loads(res.text)['Valute'][valute]['Value']
-    return f'курс {valute}: {json_file}'
+def what_course(*args):
+    res = requests.get(LINK)
+    for i in args:
+        json_file = json.loads(res.text)['Valute'][i]['Value']
+        json_valute = json.loads(res.text)['Valute'][i]['Name']
+        yield f'курс {json_valute}: {json_file}'
 
 
-print(what_course('USD'))
+if __name__ == '__main__':
+    print(*what_course('USD', 'EUR', 'AUD'))
 
