@@ -19,16 +19,22 @@
 #
 # Доказать, что вы создали именно генератор. Проверить его работу вплоть до истощения. Подумать,
 # в каких ситуациях генератор даст эффект.
-tutors = [
-    'Иван', 'Анастасия', 'Петр', 'Сергей',
-    'Дмитрий', 'Борис', 'Елена', 'sdf'
-]
-klasses = [
-    '9А', '7В', '9Б', '9В', '8Б', '10А', 'dsf'
-]
+from itertools import zip_longest
 
 
 def tutors_klasses(list_1, list_2):
-    return (f'{list_1[j]}, {list_2[j]}' for j in range(len(list_1)))
+    return ((i, j) for i, j in zip_longest(list_1, list_2))
 
-print(*tutors_klasses(tutors, klasses))
+
+tutors = [
+    'Иван', 'Анастасия', 'Петр', 'Сергей',
+    'Дмитрий', 'Борис', 'Елена'
+]
+klasses = [
+    '9А', '7В', '9Б', '9В', '8Б', '10А'
+]
+
+gen_tutor_klass = tutors_klasses(tutors, klasses)
+print(next(gen_tutor_klass))
+print(next(gen_tutor_klass))
+print(next(gen_tutor_klass))
