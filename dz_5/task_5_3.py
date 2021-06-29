@@ -1,11 +1,11 @@
 # 3 Есть два списка:
-# tutors = [
-#     'Иван', 'Анастасия', 'Петр', 'Сергей',
-#     'Дмитрий', 'Борис', 'Елена'
-# ]
-# klasses = [
-#     '9А', '7В', '9Б', '9В', '8Б', '10А', '10Б', '9А'
-# ]
+tutors = [
+    'Иван', 'Анастасия', 'Петр', 'Сергей',
+    'Дмитрий', 'Борис', 'Елена', 'sdgsdg', 'DGGGG'
+]
+klasses = [
+    '9А', '7В', '9Б', '9В', '8Б', '10А', '10Б'
+]
 #
 #
 # Необходимо реализовать генератор, возвращающий кортежи вида (<tutor>, <klass>), например:
@@ -19,22 +19,15 @@
 #
 # Доказать, что вы создали именно генератор. Проверить его работу вплоть до истощения. Подумать,
 # в каких ситуациях генератор даст эффект.
-from itertools import zip_longest
 
 
-def tutors_klasses(list_1, list_2):
-    return ((i, j) for i, j in zip_longest(list_1, list_2))
+def shool(list_1, list_2):
+    _tutors = (el for el in list_1)
+    _klasses = (el for el in list_2)
+    for _shool in zip(_klasses, _tutors):
+        yield _shool[::-1]
+    for rest in _tutors:
+        yield rest, None
 
 
-tutors = [
-    'Иван', 'Анастасия', 'Петр', 'Сергей',
-    'Дмитрий', 'Борис', 'Елена'
-]
-klasses = [
-    '9А', '7В', '9Б', '9В', '8Б', '10А'
-]
-
-gen_tutor_klass = tutors_klasses(tutors, klasses)
-print(next(gen_tutor_klass))
-print(next(gen_tutor_klass))
-print(next(gen_tutor_klass))
+print(*shool(tutors, klasses))
